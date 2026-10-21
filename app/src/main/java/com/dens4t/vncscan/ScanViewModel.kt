@@ -46,11 +46,7 @@ class ScanViewModel(application: Application) : AndroidViewModel(application) {
                 networkError = if (network == null) {
                     "Jaringan tidak terdeteksi. Isi range secara manual."
                 } else null,
-                rangeInput = if (current.rangeInput.isBlank() && network != null) {
-                    "${network.startIp}-${network.endIp}"
-                } else {
-                    current.rangeInput
-                }
+                rangeInput = network?.let { "${it.startIp}-${it.endIp}" } ?: current.rangeInput
             )
         }
     }
